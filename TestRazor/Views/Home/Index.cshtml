@@ -1,0 +1,118 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+
+    //Declare
+    var name = "Tura";
+    int age = 18;
+
+    String qty = "5";// Use .AsInt() convert to int in total
+    double price = 50;
+    double total = qty.AsInt() * price;
+    var today = DateTime.Now;
+
+    var txt = "";
+    if (DateTime.Now.Hour <= 10)
+    {
+        txt = "Good Morning";
+    }
+    else if (DateTime.Now.Hour > 10 && DateTime.Now.Hour < 12)
+    {
+        txt = "Hello";
+    }
+    else
+    {
+        txt = "Good Afternoon";
+    }
+
+}
+
+<h2>@txt</h2>
+<h1>Hello World</h1>
+<h1>My name is @name and I'm @age. </h1>
+<h3>Total of Price is @total</h3>
+<h3>Datatype of qty isInt?@qty.IsInt()</h3>
+<h1>@today</h1>
+
+<table border="1">
+    <tr>
+        <th width="100px">Name</th>
+        <td width="100px">Value</td>
+    </tr>
+    <tr>
+        <td>Day</td>
+        <td>@DateTime.Now.Day</td>
+    </tr>
+    <tr>
+        <td>Hour</td>
+        <td>@DateTime.Now.Hour</td>
+    </tr>
+    <tr>
+        <td>Minute</td>
+        <td>@DateTime.Now.Minute</td>
+    </tr>
+    <tr>
+        <td>Second</td>
+        <td>@DateTime.Now.Second</td>
+    </tr>
+</table>
+
+<ul>
+    @for (var i = 1; i <= 10; i++)
+    {
+        <li>Line @i</li>
+
+    }
+</ul>
+
+<ol>
+    @foreach (var d in Request.ServerVariables)
+    {
+        <li>@d</li>
+    }
+</ol>
+
+@{
+    var j = 0;
+    while (j < 5)
+    {
+
+        <p> @j</p>
+        j++;
+
+    }
+}
+
+@{
+    string[] member = { "lina", "Kis", "lik" };
+    int position = Array.IndexOf(member, "lik") + 1;
+    int len = member.Length;
+}
+@foreach (var named in member)
+{
+    <p>@named</p>
+}
+<p>lik is at position @position</p>
+<p>total Member = @len</p>
+
+@{
+    var weekday = DateTime.Now.DayOfWeek;
+    var day = weekday.ToString();
+    var message = "";
+}
+@switch (day)
+{
+    case "Monday":
+        message = "This is the first weekday.";
+        break;
+    case "Thursday":
+        message = "Only one day before weekend.";
+        break;
+    case "Friday":
+        message = "Tomorrow is weekend!";
+        break;
+    default:
+        message = "Today is " + day;
+        break;
+}
+<p>@message</p>
